@@ -1,1 +1,1 @@
-# snake_game in Python![snake](https://user-images.githubusercontent.com/76970415/160724074-a4643f16-4c6f-499e-afc0-b22c3c1ab732.png)
+# snake_game in Python.![snake](https://user-images.githubusercontent.com/76970415/160724139-4500a3f1-4530-4ad3-9e46-68844671d322.png)
