@@ -3,7 +3,7 @@ import random
 
 GAME_WIDTH = 700
 GAME_HEIGHT = 700
-SPEED = 50
+SPEED = 75
 SPACE_SIZE = 50
 BODY_PARTS = 3
 SNAKE_COLOR = "#00FF00"
@@ -55,13 +55,30 @@ def next_turn(snake, food):
 
     snake.squares.insert(0, square)
 
-    del snake.coordinates[-1]
+    if x == food.coordinates[0] and y ==food.coordinates[1]:
 
-    canvas.delete(snake.squares[-1])
+        global score
 
-    del snake.squares[-1]
+        score += 1
 
-    window.after(SPEED, next_turn, snake, food)
+        label.config(text="Score:{}".format(score))
+
+        canvas.delete("food")
+
+        food = Food()
+
+    else:
+        del snake.coordinates[-1]
+
+        canvas.delete(snake.squares[-1])
+
+        del snake.squares[-1]
+
+    if check_collisions(snake):
+        game_over()
+
+    else:
+        window.after(SPEED, next_turn, snake, food)
 
 def change_direction(new_direction):
 
@@ -81,8 +98,14 @@ def change_direction(new_direction):
             direction = new_direction
 
 
-def check_collisions():
-    pass
+def check_collisions(snake):
+
+    x, y = snake.coordinates[0]
+
+    if x < 0 or x >= GAME_WIDTH:
+        return True
+    elif y < 0 or y >= GAME_HEIGHT:
+        return True
 
 def game_over():
     pass
